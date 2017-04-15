@@ -70,19 +70,20 @@ const actions = {
   // },
 
   // fetch-weather bot executes
-  ['getForecast'](sessionId, context,entities, cb) {
-      
-      const loc = firstEntityValue(entities, 'location');
+  ['getForecast'](sessionId, context, cb) {
+        const loc = firstEntityValue(entities, 'location');
     // Here should go the api call, e.g.:
     // context.forecast = apiCall(context.loc)
     if (loc) {
-      context.forecast = 'sunny in ' + loc; // we should call a weather API here
+      context.forecast = 'sunny in ' + location; // we should call a weather API here
       delete context.missingLocation;
     } else {
       context.missingLocation = true;
       delete context.forecast;
     }
-  //  context.forecast = 'sunny';
+
+
+    context.forecast = 'sunny';
     cb(context);
   },
 };
