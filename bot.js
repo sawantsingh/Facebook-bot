@@ -54,19 +54,19 @@ const actions = {
       cb();
     }
   },
-  merge(sessionId, context, entities, message, cb) {
-    // Retrieve the location entity and store it into a context field
-    const loc = firstEntityValue(entities, 'location');
-    if (loc) {
-      context.loc = loc; // store it in context
-    }
+  // merge(sessionId, context, entities, message, cb) {
+  //   // Retrieve the location entity and store it into a context field
+  //   const loc = firstEntityValue(entities, 'location');
+  //   if (loc) {
+  //     context.loc = loc; // store it in context
+  //   }
 
-    cb(context);
-  },
+  //   cb(context);
+  // },
 
-  error(sessionId, context, error) {
-    console.log(error.message);
-  },
+  // error(sessionId, context, error) {
+  //   console.log(error.message);
+  // },
 
   // fetch-weather bot executes
   ['getForecast'](sessionId, context, cb) {
