@@ -54,32 +54,38 @@ const actions = {
       cb();
     }
   },
-  merge(sessionId, context, entities, message, cb) {
-    // Retrieve the location entity and store it into a context field
-    const loc = firstEntityValue(entities, 'location');
-    if (loc) {
-      context.loc = loc; // store it in context
-    }
+ 
+ 
+  // merge(sessionId, context, entities, message, cb) {
+  //   // Retrieve the location entity and store it into a context field
+  //   const loc = firstEntityValue(entities, 'location');
+  //   if (loc) {
+  //     context.loc = loc; // store it in context
+  //   }
+  //   cb(context);
+  // },
 
-    cb(context);
-  },
-
-  error(sessionId, context, error) {
-    console.log(error.message);
-  },
+  // error(sessionId, context, error) {
+  //   console.log(error.message);
+  // },
 
   // fetch-weather bot executes
-  ['getForecast'](sessionId, context, cb) {
+  ['getForecast'](sessionId, context,entities, cb) {
+      
+      const location = firstEntityValue(entities, 'location');
     // Here should go the api call, e.g.:
     // context.forecast = apiCall(context.loc)
-
-    if (loc) {
+    if (location) {
       context.forecast = 'sunny in ' + location; // we should call a weather API here
       delete context.missingLocation;
     } else {
       context.missingLocation = true;
       delete context.forecast;
     }
+
+
+    context.forecast = 'sunny';
+    cb(context);
   },
 };
 
