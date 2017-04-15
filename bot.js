@@ -72,8 +72,14 @@ const actions = {
   ['getForecast'](sessionId, context, cb) {
     // Here should go the api call, e.g.:
     // context.forecast = apiCall(context.loc)
-    context.forecast = 'sunny';
-    cb(context);
+
+    if (loc) {
+      context.forecast = 'sunny in ' + location; // we should call a weather API here
+      delete context.missingLocation;
+    } else {
+      context.missingLocation = true;
+      delete context.forecast;
+    }
   },
 };
 
