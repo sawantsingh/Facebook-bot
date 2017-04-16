@@ -79,14 +79,14 @@ const actions = {
   // },
 
 
-  ['getForecast'](sessionId, context, entities,message, cb ) {
+  ['getForecast'](sessionId, context, entities, message, cb ) {
     var location = firstEntityValue(entities, "location")
     if (location) {
       context.forecast = 'sunny in ' + location; // we should call a weather API here
-      delete context.missingLocation;
+      //delete context.missingLocation;
     } else {
       context.missingLocation = true;
-      delete context.forecast;
+      //delete context.forecast;
     }
     cb(context);
 },
