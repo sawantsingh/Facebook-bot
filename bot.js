@@ -55,8 +55,31 @@ const actions = {
     }
   },
 
-  getForecast({context, entities}) {
-  return new Promise(function(resolve, reject) {
+  // ['merge'](sessionId, context, entities, message, cb) {
+  //   // Retrieve the location entity and store it into a context field
+  //   const loc = firstEntityValue(entities, 'location');
+  //   if (loc) {
+  //     console.log('Location found', loc);
+  //     context.loc = loc; // store it in context
+  //   }
+  //   cb(context);
+  // },
+
+  // error(sessionId, context, error) {
+  //   console.log(error.message);
+  // },
+
+  // // fetch-weather bot executes
+  // ['fetch-weather'](sessionId, context, cb) {
+  //   // Here should go the api call, e.g.:
+  //   // context.forecast = apiCall(context.loc)
+
+  //   context.forecast = 'sunny';
+  //   cb(context);
+  // },
+
+
+  ['getForecast']({context, entities}) {
     var location = firstEntityValue(entities, "location")
     if (location) {
       context.forecast = 'sunny in ' + location; // we should call a weather API here
@@ -66,8 +89,9 @@ const actions = {
       delete context.forecast;
     }
     return resolve(context);
-  });
 },
+
+
 };
 
 
