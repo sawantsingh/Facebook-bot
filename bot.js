@@ -76,6 +76,7 @@ const actions = {
 
     context.forecast = 'sunny';
     cb(context);
+    delete context.loc
   },
 
 /*
