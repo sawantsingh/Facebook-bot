@@ -74,6 +74,7 @@ app.get('/webhook', (req, res) => {
   }
 });
 
+/*
 app.get('/setup',function(req,res){
 
     //setupGetStartedButton(res);
@@ -103,6 +104,7 @@ app.get('/setup',function(req,res){
             }
         });
 });
+*/
 
 /*
 function setupGetStartedButton(res){
