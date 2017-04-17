@@ -58,6 +58,13 @@ const actions = {
   ['merge'](sessionId, context, entities, message, cb) {
     // Retrieve the location entity and store it into a context field
     const loc = firstEntityValue(entities, 'location');
+    const weather = firstEntityValue(entities, 'weather');
+
+    if (!weather) {
+       context.forecast = 'What?';
+       cb(context);
+    }
+
     if (loc) {
       console.log('Location found', loc);
       context.loc = loc; // store it in context
