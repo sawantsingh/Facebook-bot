@@ -74,6 +74,36 @@ app.get('/webhook', (req, res) => {
   }
 });
 
+app.get('/setup',function(req,res){
+
+    //setupGetStartedButton(res);
+    var messageData = {
+                "get_started":[
+                {
+                    "payload":"Welcome to My Car Insurance"
+                    }
+                ]
+        };
+
+        // Start the request
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ Config.FB_PAGE_TOKEN,
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            form: messageData
+        },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                // Print out the response body
+                res.send(body);
+
+            } else { 
+                // TODO: Handle errors
+                res.send(body);
+            }
+        });
+});
+
 // The main message handler
 app.post('/webhook', (req, res) => {
   // Parsing the Messenger API response
