@@ -148,7 +148,6 @@ app.post('/webhook/', function (req, res) {
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
-     // res.send("Postback received")
 			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
 			continue
 		}
@@ -229,3 +228,108 @@ app.post('/webhook', (req, res) => {
 });
 
 */
+
+
+function sendResponseData(sender,response) {
+
+	 var json = JSON.parse(response.body);
+		console.log('Printing json:',json)
+
+		let hourly = json["hourly"]
+		let summary = hourly["summary"]
+		console.log('Printing json:',summary)
+
+
+	let messageData = { text:summary }
+
+
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+
+function sendTextMessage(sender, text) {
+	let messageData = { text:text }
+	
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+function sendGenericMessage(sender) {
+	let messageData = {
+		"attachment": {
+			"type": "template",
+			"payload": {
+				"template_type": "generic",
+				"elements": [{
+					"title": "First card",
+					"subtitle": "Element #1 of an hscroll",
+					"image_url": "https://scontent-sin6-1.xx.fbcdn.net/v/t31.0-8/17218524_10211278521054605_3920462141316408947_o.jpg?oh=8307dfaf91be1b3608dc99327f12fecb&oe=59971EED",
+					"buttons": [{
+						"type": "web_url",
+						"url": "https://en.wikipedia.org/wiki/Deloitte",
+						"title": "Deloitte"
+					}, {
+						"type": "postback",
+						"title": "Postback",
+						"payload": "Payload for first element in a generic bubble",
+					}],
+				}, {
+					"title": "Second card",
+					"subtitle": "Element #2 of an hscroll",
+					"image_url": "http://www.qspiders.com/sites/default/files/sunny%20amar%20nath.jpg",
+					"buttons": [{
+						"type": "web_url",
+						"url": "https://www.allianz.com/en/",
+						"title": "Allianz"
+					},{
+						"type": "postback",
+						"title": "Postback",
+						"payload": "Payload for second element in a generic bubble",
+					}],
+				}]
+			}
+		}
+	}
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
