@@ -245,7 +245,7 @@ function sendResponseData(sender,response) {
 
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
+		qs: {access_token:Config.FB_PAGE_TOKEN},
 		method: 'POST',
 		json: {
 			recipient: {id:sender},
@@ -266,7 +266,7 @@ function sendTextMessage(sender, text) {
 	
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
+		qs: {access_token:Config.FB_PAGE_TOKEN},
 		method: 'POST',
 		json: {
 			recipient: {id:sender},
@@ -319,7 +319,7 @@ function sendGenericMessage(sender) {
 	}
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
+		qs: {access_token:Config.FB_PAGE_TOKEN},
 		method: 'POST',
 		json: {
 			recipient: {id:sender},
