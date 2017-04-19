@@ -122,6 +122,7 @@ app.post('/webhook/', function (req, res) {
 
 		if (event.message && event.message.text) {
 			let text = event.message.text
+       console.log( "Main text" + text)
 
         wit.runActions(
               sessionId, // the user's current session
@@ -137,13 +138,13 @@ app.post('/webhook/', function (req, res) {
             })			
 		} 
 		if (event.postback) {
-			let text = JSON.stringify(event.postback.payload)
-      console.log( "this is my" + text)
+			let text1 = JSON.stringify(event.postback.payload)
 			//sendTextMessage(sender, "Postback received: "+text.substring(0, 200))
-      if (text === '"Start Chatting"') {
+      if (text1 === '"Start Chatting"') {
 
          {
             // We received a text message
+             console.log( "this is my text 1" + text1)
 
             // Let's forward the message to the Wit.ai Bot Engine
             // This will run all actions until our bot has nothing left to do
