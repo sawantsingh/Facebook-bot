@@ -110,7 +110,6 @@ app.get('/setup',function(req,res){
 */
 
 
-/*
 app.post('/webhook/', function (req, res) {
 	
 	console.log("Main console" + req);
@@ -121,12 +120,11 @@ app.post('/webhook/', function (req, res) {
 		let sender = event.sender.id
      const sessionId = findOrCreateSession(sender);
 
-if (event.postback) {
+  if (event.postback) {
 			let text1 = JSON.stringify(event.postback.payload)
 			//sendTextMessage(sender, "Postback received: "+text.substring(0, 200))
       if (text1 === '"Start Chatting"') {
          {
-
             const {text, attachments} = event.message;
           
             console.log( "message text 1" + text)
@@ -148,9 +146,9 @@ if (event.postback) {
               // Based on the session state, you might want to reset the session.
               // This depends heavily on the business logic of your bot.
               // Example:
-              if (context['done']) {
-                delete sessions[sessionId];
-              }
+              //if (context['done']) {
+              //  delete sessions[sessionId];
+              //}
 
               // Updating the user's current session state
               sessions[sessionId].context = context;
@@ -185,9 +183,8 @@ if (event.postback) {
 	res.sendStatus(200)
 })
 
-*/
 
-
+/*
 // The main message handler
 app.post('/webhook', (req, res) => {
    // Parse the Messenger payload
@@ -258,6 +255,7 @@ app.post('/webhook', (req, res) => {
   res.sendStatus(200);
 });
 
+*/
 
 
 function sendResponseData(sender,response) {
