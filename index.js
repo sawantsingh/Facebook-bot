@@ -149,8 +149,9 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
-			let text = JSON.stringify(event.postback)
-			sendTextMessage(sender, "Postback received: "+text.substring(0, 200))
+			//let text = JSON.stringify(event.postback)
+			//sendTextMessage(sender, "Postback received: "+text.substring(0, 200))
+      sendWelcomeMessage(sender);
 			continue
 		}
 	}
@@ -285,7 +286,7 @@ function sendTextMessage(sender, text) {
 	})
 }
 
-function sendGenericMessage(sender) {
+function sendWelcomeMessage(sender) {
 	let messageData = {
 		"attachment": {
 			"type": "template",
@@ -303,19 +304,6 @@ function sendGenericMessage(sender) {
 						"type": "postback",
 						"title": "Postback",
 						"payload": "Payload for first element in a generic bubble",
-					}],
-				}, {
-					"title": "Second card",
-					"subtitle": "Element #2 of an hscroll",
-					"image_url": "http://www.qspiders.com/sites/default/files/sunny%20amar%20nath.jpg",
-					"buttons": [{
-						"type": "web_url",
-						"url": "https://www.allianz.com/en/",
-						"title": "Allianz"
-					},{
-						"type": "postback",
-						"title": "Postback",
-						"payload": "Payload for second element in a generic bubble",
 					}],
 				}]
 			}
