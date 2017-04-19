@@ -112,7 +112,7 @@ app.get('/setup',function(req,res){
 
 app.post('/webhook/', function (req, res) {
 	
-	console.log(req);
+	console.log("Main console" + req);
 
 	let messaging_events = req.body.entry[0].messaging
 	for (let i = 0; i < messaging_events.length; i++) {
@@ -150,6 +150,7 @@ app.post('/webhook/', function (req, res) {
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback.payload)
+      console.log( "this is my" + text)
 			//sendTextMessage(sender, "Postback received: "+text.substring(0, 200))
       if (text === "Start Chatting") {
           sendTextMessage(sender,"How can I help you")
