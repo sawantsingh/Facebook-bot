@@ -134,30 +134,30 @@ app.post('/webhook/', function (req, res) {
              console.log( "this is my text 11" + text1)
 
 
-            // // Let's forward the message to the Wit.ai Bot Engine
-            // // This will run all actions until our bot has nothing left to do
-            // wit.runActions(
-            //   sessionId, // the user's current session
-            //   text, // the user's message
-            //   sessions[sessionId].context // the user's current session state
-            // ).then((context) => {
-            //   // Our bot did everything it has to do.
-            //   // Now it's waiting for further messages to proceed.
-            //   console.log('Waiting for next user messages');
+            // Let's forward the message to the Wit.ai Bot Engine
+            // This will run all actions until our bot has nothing left to do
+            wit.runActions(
+              sessionId, // the user's current session
+              text1, // the user's message
+              sessions[sessionId].context // the user's current session state
+            ).then((context) => {
+              // Our bot did everything it has to do.
+              // Now it's waiting for further messages to proceed.
+              console.log('Waiting for next user messages');
 
-            //   // Based on the session state, you might want to reset the session.
-            //   // This depends heavily on the business logic of your bot.
-            //   // Example:
-            //   //if (context['done']) {
-            //   //  delete sessions[sessionId];
-            //   //}
+              // Based on the session state, you might want to reset the session.
+              // This depends heavily on the business logic of your bot.
+              // Example:
+              //if (context['done']) {
+              //  delete sessions[sessionId];
+              //}
 
-            //   // Updating the user's current session state
-            //   sessions[sessionId].context = context;
-            // })
-            // .catch((err) => {
-            //   console.error('Oops! Got an error from Wit: ', err.stack || err);
-            // })
+              // Updating the user's current session state
+              sessions[sessionId].context = context;
+            })
+            .catch((err) => {
+              console.error('Oops! Got an error from Wit: ', err.stack || err);
+            })
 
           }
         }
