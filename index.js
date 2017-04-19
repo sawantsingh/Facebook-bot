@@ -122,12 +122,13 @@ app.post('/webhook/', function (req, res) {
 
   if (event.postback) {
 			let text1 = JSON.stringify(event.postback.payload)
+      console.log( "message text 1" + text)
+
 			//sendTextMessage(sender, "Postback received: "+text.substring(0, 200))
       if (text1 === '"Start Chatting"') {
          {
             const {text, attachments} = event.message;
           
-            console.log( "message text 1" + text)
 
             // We received a text message
              console.log( "this is my text 1" + text1)
