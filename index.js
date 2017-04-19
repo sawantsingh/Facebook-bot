@@ -135,7 +135,7 @@ app.post('/webhook/', function (req, res) {
             .catch((err) => {
               console.error('Oops! Got an error from Wit: ', err.stack || err);
             })			
-		}
+		} 
 		if (event.postback) {
 			let text = JSON.stringify(event.postback.payload)
       console.log( "this is my" + text)
@@ -149,7 +149,7 @@ app.post('/webhook/', function (req, res) {
             // This will run all actions until our bot has nothing left to do
             wit.runActions(
               sessionId, // the user's current session
-              text, // the user's message
+              "StartChatting", // the user's message
               sessions[sessionId].context // the user's current session state
             ).then((context) => {
               // Our bot did everything it has to do.
