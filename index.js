@@ -149,7 +149,7 @@ app.post('/webhook/', function (req, res) {
             // This will run all actions until our bot has nothing left to do
             wit.runActions(
               sessionId, // the user's current session
-              "StartChatting", // the user's message
+              text, // the user's message
               sessions[sessionId].context // the user's current session state
             ).then((context) => {
               // Our bot did everything it has to do.
