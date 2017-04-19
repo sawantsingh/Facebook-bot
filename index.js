@@ -149,9 +149,14 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
-			//let text = JSON.stringify(event.postback)
+			let text = JSON.stringify(event.postback)
 			//sendTextMessage(sender, "Postback received: "+text.substring(0, 200))
-      sendWelcomeMessage(sender)
+      if (text === "Start Chatting") {
+          sendTextMessage(sender,"How can I help you")
+      }
+      else {
+            sendWelcomeMessage(sender)
+      }
 			continue
 		}
 	}
@@ -346,12 +351,16 @@ function sendWelcomeMessage(sender) {
 				"template_type": "generic",
 				"elements": [{
 					"title": "Welcome to My Car Insurance",
-					"subtitle": "You can ask, Please tell me my insurance detail",
-					"image_url": "https://scontent-sin6-1.xx.fbcdn.net/v/t31.0-8/17218524_10211278521054605_3920462141316408947_o.jpg?oh=8307dfaf91be1b3608dc99327f12fecb&oe=59971EED",
+					"subtitle": "You’re In Good Hands",
+					"image_url": "http://mciuae.com/images/my-car-insurance-logo.jpg",
 					"buttons": [{
 						"type": "web_url",
 						"url": "https://www.allianz.com/en/",
 						"title": "Visit our website"
+					},{
+						"type": "postback",
+						"title": "Start Chatting",
+						"payload": "Start Chatting",
 					}],
 				}]
 			}
