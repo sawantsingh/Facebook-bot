@@ -118,7 +118,7 @@ app.post('/webhook/', function (req, res) {
 	for (let i = 0; i < messaging_events.length; i++) {
 		let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
-     const sessionId = findOrCreateSession(sender);
+    const sessionId = findOrCreateSession(sender);
 
   if (event.postback) {
 			let text1 = JSON.stringify(event.postback.payload)
@@ -132,30 +132,32 @@ app.post('/webhook/', function (req, res) {
             // We received a text message
              console.log( "this is my text 1" + text1)
 
-            // Let's forward the message to the Wit.ai Bot Engine
-            // This will run all actions until our bot has nothing left to do
-            wit.runActions(
-              sessionId, // the user's current session
-              text, // the user's message
-              sessions[sessionId].context // the user's current session state
-            ).then((context) => {
-              // Our bot did everything it has to do.
-              // Now it's waiting for further messages to proceed.
-              console.log('Waiting for next user messages');
 
-              // Based on the session state, you might want to reset the session.
-              // This depends heavily on the business logic of your bot.
-              // Example:
-              //if (context['done']) {
-              //  delete sessions[sessionId];
-              //}
+            // // Let's forward the message to the Wit.ai Bot Engine
+            // // This will run all actions until our bot has nothing left to do
+            // wit.runActions(
+            //   sessionId, // the user's current session
+            //   text, // the user's message
+            //   sessions[sessionId].context // the user's current session state
+            // ).then((context) => {
+            //   // Our bot did everything it has to do.
+            //   // Now it's waiting for further messages to proceed.
+            //   console.log('Waiting for next user messages');
 
-              // Updating the user's current session state
-              sessions[sessionId].context = context;
-            })
-            .catch((err) => {
-              console.error('Oops! Got an error from Wit: ', err.stack || err);
-            })
+            //   // Based on the session state, you might want to reset the session.
+            //   // This depends heavily on the business logic of your bot.
+            //   // Example:
+            //   //if (context['done']) {
+            //   //  delete sessions[sessionId];
+            //   //}
+
+            //   // Updating the user's current session state
+            //   sessions[sessionId].context = context;
+            // })
+            // .catch((err) => {
+            //   console.error('Oops! Got an error from Wit: ', err.stack || err);
+            // })
+
           }
         }
       else {
@@ -166,18 +168,20 @@ app.post('/webhook/', function (req, res) {
 			let text = event.message.text
        console.log( "Main text" + text)
 
-        wit.runActions(
-              sessionId, // the user's current session
-              text, // the user's message
-              sessions[sessionId].context // the user's current session state
-            ).then((context) => {
+       sendTextMessage(sender, text);
+
+        // wit.runActions(
+        //       sessionId, // the user's current session
+        //       text, // the user's message
+        //       sessions[sessionId].context // the user's current session state
+        //     ).then((context) => {
             
-              console.log('Waiting for next user messages');
-              sessions[sessionId].context = context;
-            })
-            .catch((err) => {
-              console.error('Oops! Got an error from Wit: ', err.stack || err);
-            })			
+        //       console.log('Waiting for next user messages');
+        //       sessions[sessionId].context = context;
+        //     })
+        //     .catch((err) => {
+        //       console.error('Oops! Got an error from Wit: ', err.stack || err);
+        //     })			
 		} 
 	}
 	res.sendStatus(200)
