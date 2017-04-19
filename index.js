@@ -152,7 +152,7 @@ app.post('/webhook/', function (req, res) {
 			let text = JSON.stringify(event.postback.payload)
       console.log( "this is my" + text)
 			//sendTextMessage(sender, "Postback received: "+text.substring(0, 200))
-      if (text === 'Start Chatting') {
+      if (text === '"Start Chatting"') {
           sendTextMessage(sender,"How can I help you")
       }
       else {
