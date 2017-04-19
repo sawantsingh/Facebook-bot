@@ -129,16 +129,15 @@ app.post('/webhook/', function (req, res) {
          {
             //const {text, attachments} = event.message;
           
-
+            const newText = 'StartChatting'
             // We received a text message
              console.log( "this is my text 11" + text1)
-
 
             // Let's forward the message to the Wit.ai Bot Engine
             // This will run all actions until our bot has nothing left to do
             wit.runActions(
               sessionId, // the user's current session
-              text1, // the user's message
+              newText, // the user's message
               sessions[sessionId].context // the user's current session state
             ).then((context) => {
               // Our bot did everything it has to do.
