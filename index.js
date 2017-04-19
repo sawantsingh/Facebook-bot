@@ -343,9 +343,9 @@ function sendWelcomeMessage(sender) {
 		"attachment": {
 			"type": "template",
 			"payload": {
-				"template_type": "Welcome to My Car Insurance",
+				"template_type": "generic",
 				"elements": [{
-					"title": "First card",
+					"title": "Welcome to My Car Insurance",
 					"subtitle": "You can ask, Please tell me my insurance detail",
 					"image_url": "https://scontent-sin6-1.xx.fbcdn.net/v/t31.0-8/17218524_10211278521054605_3920462141316408947_o.jpg?oh=8307dfaf91be1b3608dc99327f12fecb&oe=59971EED",
 					"buttons": [{
