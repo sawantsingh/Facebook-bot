@@ -118,35 +118,23 @@ app.post('/webhook/', function (req, res) {
 	for (let i = 0; i < messaging_events.length; i++) {
 		let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
+     const sessionId = findOrCreateSession(sender);
+
 		if (event.message && event.message.text) {
 			let text = event.message.text
-			if (text === 'Generic'){ 
-				console.log("welcome to chatbot")
-				sendGenericMessage(sender)
-				continue
-			}
-			if (text === 'weather'){
-				let urlString = 'https://api.darksky.net/forecast/5fa39d2d3870ab45753d970a62fb4777/37.8267,-122.4233' //req.body.coordinate
-				
-				request({
-					url: urlString,
-					method: 'GET'
-				}, function(error, response, body) {
-					if (error) {
-						console.log('Error sending messages: ', error)
-					} else if (response.body.error) {
-						console.log('Error: ', response.body.error)
-					}
-					if (response) {
-				 		// sendTextMessage(sender, "Received response, echo: " + text.substring(0, 200))
 
-					}
-					sendResponseData(sender,response)
-				})
-				continue
-			}
-      
-			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+        wit.runActions(
+              sessionId, // the user's current session
+              text, // the user's message
+              sessions[sessionId].context // the user's current session state
+            ).then((context) => {
+            
+              console.log('Waiting for next user messages');
+              sessions[sessionId].context = context;
+            })
+            .catch((err) => {
+              console.error('Oops! Got an error from Wit: ', err.stack || err);
+            })			
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback.payload)
