@@ -127,7 +127,7 @@ app.post('/webhook/', function (req, res) {
 			//sendTextMessage(sender, "Postback received: "+text.substring(0, 200))
       if (text1 === '"Start Chatting"') {
          {
-            const {text, attachments} = event.message;
+            //const {text, attachments} = event.message;
           
 
             // We received a text message
