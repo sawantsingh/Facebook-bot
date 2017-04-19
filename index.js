@@ -149,7 +149,7 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
-			let text = JSON.stringify(event.postback)
+			let text = JSON.stringify(event.postback.payload)
 			//sendTextMessage(sender, "Postback received: "+text.substring(0, 200))
       if (text === "Start Chatting") {
           sendTextMessage(sender,"How can I help you")
@@ -352,7 +352,7 @@ function sendWelcomeMessage(sender) {
 				"elements": [{
 					"title": "Welcome to My Car Insurance",
 					"subtitle": "You’re In Good Hands",
-					"image_url": "http://mciuae.com/images/my-car-insurance-logo.jpg",
+					"image_url": "https://www.aautoandhomeinsurance.com/img/~www.aautoandhomeinsurance.com/cheapest%20auto%20pics/17102035437_f005f23cb7_b.jpg",
 					"buttons": [{
 						"type": "web_url",
 						"url": "https://www.allianz.com/en/",
