@@ -121,7 +121,7 @@ app.post('/webhook/', function (req, res) {
 		let sender = event.sender.id
     const sessionId = findOrCreateSession(sender);
 
-  	if (event.message && event.message.text && !event.message.is_echo) {
+  	if (event.message && event.message.text) {
 			let text = event.message.text
        console.log( "Main text" + text)
 
