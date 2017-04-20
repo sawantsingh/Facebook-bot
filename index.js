@@ -134,17 +134,18 @@ app.post('/webhook/', function (req, res) {
             
               console.log('Waiting for next user messages');
 
-              if (context['done']) {
-                delete sessions[sessionId];
-              }
+              // if (context['done']) {
+              //   delete sessions[sessionId];
+              // }
 
               sessions[sessionId].context = context;
             })
             .catch((err) => {
               console.error('Oops! Got an error from Wit: ', err.stack || err);
-            })			
+            })	
+            break;		
 		}   
-  if (event.postback) {
+  else if (event.postback) {
 			let text1 = JSON.stringify(event.postback.payload)
       console.log( "message text 1" + text1)
 
