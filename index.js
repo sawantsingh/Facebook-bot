@@ -115,12 +115,13 @@ app.post('/webhook/', function (req, res) {
 	console.log("Main console" + req);
 
 	let messaging_events = req.body.entry[0].messaging
+
 	for (let i = 0; i < messaging_events.length; i++) {
 		let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
     const sessionId = findOrCreateSession(sender);
 
-  	if (event.message && event.message.text) {
+  	if (event.message && event.message.text && !event.message.is_echo) {
 			let text = event.message.text
        console.log( "Main text" + text)
 
@@ -153,7 +154,7 @@ app.post('/webhook/', function (req, res) {
          {
             //const {text, attachments} = event.message;
           
-           sendTextMessage(sender, 'Hello there!')
+           sendTextMessage(sender, 'Hello there!')  
 
           }
         }
