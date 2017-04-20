@@ -109,7 +109,7 @@ app.get('/setup',function(req,res){
 });
 */
 
-
+/*
 app.post('/webhook/', function (req, res) {
 	
 	console.log("Main console" + req);
@@ -192,8 +192,9 @@ app.post('/webhook/', function (req, res) {
 	res.sendStatus(200)
 })
 
+*/
 
-/*
+
 // The main message handler
 app.post('/webhook', (req, res) => {
    // Parse the Messenger payload
@@ -264,7 +265,6 @@ app.post('/webhook', (req, res) => {
   res.sendStatus(200);
 });
 
-*/
 
 
 function sendResponseData(sender,response) {
