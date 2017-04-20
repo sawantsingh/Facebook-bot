@@ -170,18 +170,18 @@ app.post('/webhook/', function (req, res) {
 
        sendTextMessage(sender, text);
 
-        // wit.runActions(
-        //       sessionId, // the user's current session
-        //       text, // the user's message
-        //       sessions[sessionId].context // the user's current session state
-        //     ).then((context) => {
+        wit.runActions(
+              sessionId, // the user's current session
+              text, // the user's message
+              sessions[sessionId].context // the user's current session state
+            ).then((context) => {
             
-        //       console.log('Waiting for next user messages');
-        //       sessions[sessionId].context = context;
-        //     })
-        //     .catch((err) => {
-        //       console.error('Oops! Got an error from Wit: ', err.stack || err);
-        //     })			
+              console.log('Waiting for next user messages');
+              sessions[sessionId].context = context;
+            })
+            .catch((err) => {
+              console.error('Oops! Got an error from Wit: ', err.stack || err);
+            })			
 		} 
 	}
 	res.sendStatus(200)
