@@ -177,6 +177,11 @@ app.post('/webhook/', function (req, res) {
             ).then((context) => {
             
               console.log('Waiting for next user messages');
+
+              if (context['done']) {
+                delete sessions[sessionId];
+              }
+
               sessions[sessionId].context = context;
             })
             .catch((err) => {
