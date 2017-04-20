@@ -120,6 +120,30 @@ app.post('/webhook/', function (req, res) {
 		let sender = event.sender.id
     const sessionId = findOrCreateSession(sender);
 
+  	if (event.message && event.message.text) {
+			let text = event.message.text
+       console.log( "Main text" + text)
+
+       sendTextMessage(sender, text);
+
+        wit.runActions(
+              sessionId, // the user's current session
+              text, // the user's message
+              sessions[sessionId].context // the user's current session state
+            ).then((context) => {
+            
+              console.log('Waiting for next user messages');
+
+              if (context['done']) {
+                delete sessions[sessionId];
+              }
+
+              sessions[sessionId].context = context;
+            })
+            .catch((err) => {
+              console.error('Oops! Got an error from Wit: ', err.stack || err);
+            })			
+		}   
   if (event.postback) {
 			let text1 = JSON.stringify(event.postback.payload)
       console.log( "message text 1" + text1)
@@ -164,30 +188,6 @@ app.post('/webhook/', function (req, res) {
             sendWelcomeMessage(sender)
       }
 		}
-		else if (event.message && event.message.text) {
-			let text = event.message.text
-       console.log( "Main text" + text)
-
-       sendTextMessage(sender, text);
-
-        wit.runActions(
-              sessionId, // the user's current session
-              text, // the user's message
-              sessions[sessionId].context // the user's current session state
-            ).then((context) => {
-            
-              console.log('Waiting for next user messages');
-
-              if (context['done']) {
-                delete sessions[sessionId];
-              }
-
-              sessions[sessionId].context = context;
-            })
-            .catch((err) => {
-              console.error('Oops! Got an error from Wit: ', err.stack || err);
-            })			
-		} 
 	}
 	res.sendStatus(200)
 })
