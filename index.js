@@ -127,23 +127,23 @@ app.post('/webhook/', function (req, res) {
 
       //  sendTextMessage(sender, text);
 
-      //   wit.runActions(
-      //         sessionId, // the user's current session
-      //         text, // the user's message
-      //         sessions[sessionId].context // the user's current session state
-      //       ).then((context) => {
+        wit.runActions(
+              sessionId, // the user's current session
+              text, // the user's message
+              sessions[sessionId].context // the user's current session state
+            ).then((context) => {
             
-      //         console.log('Waiting for next user messages');
+              console.log('Waiting for next user messages');
 
-      //         // if (context['done']) {
-      //         //   delete sessions[sessionId];
-      //         // }
+              // if (context['done']) {
+              //   delete sessions[sessionId];
+              // }
 
-      //         sessions[sessionId].context = context;
-      //       })
-      //       .catch((err) => {
-      //         console.error('Oops! Got an error from Wit: ', err.stack || err);
-      //       })	
+              sessions[sessionId].context = context;
+            })
+            .catch((err) => {
+              console.error('Oops! Got an error from Wit: ', err.stack || err);
+            })	
 		}   
   else if (event.postback) {
 			let text1 = JSON.stringify(event.postback.payload)
