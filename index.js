@@ -143,7 +143,6 @@ app.post('/webhook/', function (req, res) {
             .catch((err) => {
               console.error('Oops! Got an error from Wit: ', err.stack || err);
             })	
-            break;		
 		}   
   else if (event.postback) {
 			let text1 = JSON.stringify(event.postback.payload)
