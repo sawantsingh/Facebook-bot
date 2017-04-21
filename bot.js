@@ -46,7 +46,7 @@ const actions = {
         }
 
         // Let's give the wheel back to our bot
-        cb(context);
+        cb();
       });
     } else {
       console.log('Oops! Couldn\'t find user in context:', context);
