@@ -76,8 +76,11 @@ const actions = {
 
         const id = firstEntityValue(entities, 'number');
 
+        console.log('Contract Id', Id);
+
+
         if (id) {
-          context.contractInfo = 'Your current contract status is active'
+          context.contractInfo = 'Your current contract status is active';
         }
       cb(context);
       delete context.contractInfo;
