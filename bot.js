@@ -55,18 +55,6 @@ const actions = {
     }
   },
 
-  ['getContractInfo'](sessionId, context, entities, message, cb) {
-           
-        console.log('ContractId', context);
-
-        const id = firstEntityValue(entities, 'number');
-
-        if (id) {
-          context.contractInfo = 'Your current contract status is active'
-        }
-      cb(context);
-  },
-
   ['merge'](sessionId, context, entities, message, cb) {
     // Retrieve the location entity and store it into a context field
     const loc = firstEntityValue(entities, 'location');
@@ -82,6 +70,20 @@ const actions = {
     console.log(error.message);
   },
 
+   ['getContractInfo'](sessionId, context, entities, message, cb) {
+           
+        console.log('ContractId', context);
+
+        const id = firstEntityValue(entities, 'number');
+
+        if (id) {
+          context.contractInfo = 'Your current contract status is active'
+        }
+      cb(context);
+  },
+
+
+/*
   // fetch-weather bot executes
   ['fetch-weather'](sessionId, context, cb) {
     // Here should go the api call, e.g.:
@@ -91,6 +93,7 @@ const actions = {
     cb(context);
     delete context.loc;
   },
+  */
 
 };
 
