@@ -76,7 +76,7 @@ const actions = {
 
         const id = firstEntityValue(entities, 'number');
 
-        console.log('Contract Id', Id);
+        console.log('Contract Id', id);
 
 
         if (id) {
