@@ -59,7 +59,7 @@ const actions = {
            
         console.log('ContractId', context);
 
-        const id = firstEntityValue(entities, 'contractId');
+        const id = firstEntityValue(entities, 'number');
 
         if (id) {
           context.contractInfo = 'Your current contract status is active'
