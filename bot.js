@@ -46,7 +46,7 @@ const actions = {
         }
 
         // Let's give the wheel back to our bot
-        cb();
+        cb(context);
       });
     } else {
       console.log('Oops! Couldn\'t find user in context:', context);
@@ -54,6 +54,18 @@ const actions = {
       cb();
     }
   },
+
+  ['getContractInfo'](sessionId, context, entities, message, cb) {
+        
+        const id = firstEntityValue(entities, 'contractId');
+
+        if (id) {
+          context.contractInfo = 'Your current contract status is active';
+        }
+        cb(context);
+  },
+
+
 
   ['merge'](sessionId, context, entities, message, cb) {
     // Retrieve the location entity and store it into a context field
@@ -79,21 +91,6 @@ const actions = {
     cb(context);
     delete context.loc;
   },
-
-/*
-  ['getForecast'](sessionId, context, entities, message, cb ) {
-    var location = firstEntityValue(entities, "location")
-    if (location) {
-      context.forecast = 'sunny in ' + location; // we should call a weather API here
-      //delete context.missingLocation;
-    } else {
-      context.missingLocation = true;
-      //delete context.forecast;
-    }
-    cb(context);
-},
-*/
-
 
 };
 
