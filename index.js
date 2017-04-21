@@ -172,7 +172,7 @@ app.post('/webhook/', function (req, res) {
       );
     }
   }
-  else if (messaging.postback) {
+  else if (event.postback) {
 			let text1 = JSON.stringify(event.postback.payload)
       console.log( "message text 1" + text1)
 
