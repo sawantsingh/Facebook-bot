@@ -70,7 +70,7 @@ const actions = {
     console.log(error.message);
   },
 
-   ['getContractInfo'](sessionId, context, entities, message, cb) {
+   ['getContractInfo'](sessionId, context, entities, cb) {
            
         console.log('ContractId', context);
 
