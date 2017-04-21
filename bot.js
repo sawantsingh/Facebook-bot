@@ -70,18 +70,18 @@ const actions = {
     console.log(error.message);
   },
 
-   ['getContractInfo'](sessionId, context, entities, cb) {
+   ['getContractInfo'](sessionId, context, cb) {
            
-        console.log('ContractId', context);
+        // console.log('ContractId', context);
 
-        const id = firstEntityValue(entities, 'number');
+        // const id = firstEntityValue(entities, 'number');
 
-        console.log('Contract Id', id);
+        // console.log('Contract Id', id);
 
 
-        if (id) {
+        // if (id) {
           context.contractInfo = 'Your current contract status is active';
-        }
+        //}
       cb(context);
       delete context.contractInfo;
   },
