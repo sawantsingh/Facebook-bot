@@ -117,6 +117,8 @@ app.post('/webhook/', function (req, res) {
   const messaging = FB.getFirstMessagingEntry(req.body);
   // Yay! We got a new message!
 
+  console.log('Print the Messaging' + messaging);
+
     // We retrieve the Facebook user ID of the sender
   const sender = messaging.sender.id;
 
