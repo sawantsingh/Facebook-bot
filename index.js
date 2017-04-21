@@ -132,6 +132,8 @@ app.post('/webhook/', function (req, res) {
     const msg = messaging.message.text;
     const atts = messaging.message.attachments;
 
+    console.log('Print the Message Log' + msg);
+
     if (atts) {
       // We received an attachment
 
@@ -173,20 +175,20 @@ app.post('/webhook/', function (req, res) {
     }
   }
   else if (event.postback) {
-			let text1 = JSON.stringify(event.postback.payload)
-      console.log( "message text 1" + text1)
+			let text1 = JSON.stringify(event.postback.payload);
+      console.log( "message text 1" + text1);
 
 			//sendTextMessage(sender, "Postback received: "+text.substring(0, 200))
       if (text1 === '"Start Chatting"') {
          {
             //const {text, attachments} = event.message;
           
-           sendTextMessage(sender, 'Hello there!')  
+           sendTextMessage(sender, 'Hello there!');
 
           }
         }
       else {
-            sendWelcomeMessage(sender)
+            sendWelcomeMessage(sender);
       }
 		}
 
