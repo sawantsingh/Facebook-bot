@@ -80,6 +80,7 @@ const actions = {
           context.contractInfo = 'Your current contract status is active'
         }
       cb(context);
+      delete context.contractInfo;
   },
 
 
