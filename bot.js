@@ -57,7 +57,7 @@ const actions = {
 
   ['merge'](sessionId, context, entities, message, cb) {
     // Retrieve the location entity and store it into a context field
-    const loc = firstEntityValue(entities, 'location');
+    const loc = firstEntityValue(entities, 'contract');
 
     if (loc) {
       console.log('Location found', loc);
@@ -80,7 +80,7 @@ const actions = {
 
 
         // if (id) {
-          context.contractInfo = 'Your current contract status is active';
+      context.contractInfo = 'Your current contract status is active';
         //}
       cb(context);
       delete context.contractInfo;
