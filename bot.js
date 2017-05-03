@@ -89,7 +89,7 @@ const actions = {
             context.contractInfo = 'Your current contract status is active';
        }
        else {
-            context.contractInfo = "I didn't get, please provide contract Id.";
+            context.contractInfo = "I didn't get, please provide a valid contract Id.";
        }
      }
     cb(context);
