@@ -57,13 +57,14 @@ const actions = {
 
   ['merge'](sessionId, context, entities, message, cb) {
     // Retrieve the location entity and store it into a context field
-    const loc = firstEntityValue(entities, 'contract');
-
-    if (loc) {
+    const contract = firstEntityValue(entities, 'contract');
+    
+    if (contract) {
       console.log('Location found', loc);
-      context.loc = loc; // store it in context
-    }
-    cb(context);
+      context.confirmation = 'Please tell me your contract Id?';
+      cb(context);
+      delete context.confirmation;
+    }    
   },
 
   error(sessionId, context, error) {
