@@ -82,16 +82,16 @@ const actions = {
 
    ['contractInfo'](sessionId, context, entities, message, cb) {
            
-     const contractId = firstEntityValue(entities, 'intent');
-     console.log('Intent ContractID found', contractId);
-     if (contractId) {
-       if(contractId == 'contractId') {
+    //  const contractId = firstEntityValue(entities, 'intent');
+    //  console.log('Intent ContractID found', contractId);
+    //  if (contractId) {
+    //    if(contractId == 'contractId') {
             context.contractInfo = 'Your current contract status is active';
-       }
-       else {
-            context.contractInfo = "I didn't get, please provide a valid contract Id.";
-       }
-     }
+      //  }
+      //  else {
+      //       context.contractInfo = "I didn't get, please provide a valid contract Id.";
+      //  }
+     //}
     cb(context);
     delete context.contractInfo;
   },
