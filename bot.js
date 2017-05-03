@@ -66,9 +66,6 @@ const actions = {
       if (contract == 'contract'){
         context.confirmation = 'Sure things! Please tell me your contract Id?';
       }
-      else if (contract == 'ContractId'){
-        context.confirmation = 'Your current contract status is active';
-      }
       else {
         context.confirmation = "Sorry, I didn't get you." ;
       }
@@ -82,8 +79,8 @@ const actions = {
     console.log(error.message);
   },
 
-/*
-   ['getContractInfo'](sessionId, context,entities, cb) {
+
+   ['contractInfo'](sessionId, context, entities, message, cb) {
            
      const contractId = firstEntityValue(entities, 'intent');
      console.log('Intent ContractID found', contractId);
@@ -98,7 +95,7 @@ const actions = {
     cb(context);
     delete context.contractInfo;
   },
-*/
+
 
 /*
   // fetch-weather bot executes
