@@ -62,8 +62,14 @@ const actions = {
      console.log('Contract found', contract);
 
     if (contract) {
-      console.log('Contract found', contract);
-      context.confirmation = 'Please tell me your contract Id?';
+
+      if (contract == 'contract'){
+        context.confirmation = 'Sure things! Please tell me your contract Id?';
+      }
+      else {
+        context.confirmation = "Sorry, I didn't get, You can ask your contract related question." ;
+      }
+
       cb(context);
       delete context.confirmation;
     }    
@@ -73,20 +79,20 @@ const actions = {
     console.log(error.message);
   },
 
-   ['getContractInfo'](sessionId, context, cb) {
+   ['getContractInfo'](sessionId, context,entities, cb) {
            
-        // console.log('ContractId', context);
-
-        // const id = firstEntityValue(entities, 'number');
-
-        // console.log('Contract Id', id);
-
-
-        // if (id) {
-      context.contractInfo = 'Your current contract status is active';
-        //}
-      cb(context);
-      delete context.contractInfo;
+     const contractId = firstEntityValue(entities, 'intent');
+     console.log('Intent ContractID found', contractId);
+     if (contractId) {
+       if(contractId == 'contractId') {
+            context.contractInfo = 'Your current contract status is active';
+       }
+       else {
+            context.contractInfo = "I didn't get, please provide contract Id.";
+       }
+     }
+    cb(context);
+    delete context.contractInfo;
   },
 
 
