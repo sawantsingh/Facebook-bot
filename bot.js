@@ -80,7 +80,7 @@ const actions = {
   },
 
 
-   ['contractInfo'](sessionId, context, entities, message, cb) {
+   ['contractInfo'](sessionId, context, cb) {
            
     //  const contractId = firstEntityValue(entities, 'intent');
     //  console.log('Intent ContractID found', contractId);
